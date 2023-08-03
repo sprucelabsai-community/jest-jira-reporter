@@ -111,7 +111,13 @@ export default class JestReporterTest extends AbstractSpruceTest {
 	}
 
 	@test()
-	protected static async canUpdateManyTestsAtOnce() {}
+	protected static async canUpdateManyTestsAtOnce() {
+		// refactor updateIssueOptions to be an array
+		// update this.assertUpdateOptionsEqual to check the first item in the array
+		// rename this.assertUpdateOptionsEqual to this.assertFirstUpdateOptions
+		// add this.assertUpdateOptionsEqual and let that accept an array of results
+		// update this.assertFirstUpdateOptionsEqual to use new this.updateOptionsEqual (passing an arary )
+	}
 
 	private static assertUpdateOptionsEqual(expected: { issueId: string; issueUpdate: { status: string } }) {
 		assert.isEqualDeep(this.jiraClient.updateIssueOptions, expected)
