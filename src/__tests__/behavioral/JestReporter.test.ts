@@ -92,7 +92,7 @@ export default class JestReporterTest extends AbstractSpruceTest {
 	}
 
 	@test()
-	protected static async updateMatchesIssuesId() {
+	protected static async passingTestMatchesIssueId() {
 		await this.simulateTestComplete([{
 			title: 'test2',
 			status: 'passed'
@@ -106,6 +106,12 @@ export default class JestReporterTest extends AbstractSpruceTest {
 		})
 	}
 
+	@test()
+	protected static async failingTestMatchesIssueId() {
+	}
+
+	@test()
+	protected static async canUpdateManyTestsAtOnce() {}
 
 	private static assertUpdateOptionsEqual(expected: { issueId: string; issueUpdate: { status: string } }) {
 		assert.isEqualDeep(this.jiraClient.updateIssueOptions, expected)
