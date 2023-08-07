@@ -2,40 +2,57 @@ import { assertOptions } from '@sprucelabs/schema';
 import JiraApi from 'jira-client';
 import { JestTest, JestTestResults } from './jira.types';
 
+
 export default class JestReporter {
 	protected client: JiraApi;
 	public static JiraApi = JiraApi;
 	private testMap: Record<string, string>;
+	protected statusMap: Record<string, any>;
 
 	public constructor(options: JestReporterOptions) {
 		const username = process.env.JIRA_USERNAME;
 		const password = process.env.JIRA_PASSWORD;
-		const { host, apiVersion, testMap } = assertOptions({ ...options, env: process.env }, ['host', 'apiVersion', 'testMap', "env.JIRA_USERNAME", "env.JIRA_PASSWORD"]);
+		const { protocol, host, apiVersion, strictSSL, testMap } = assertOptions({ ...options, env: process.env }, ['host', 'apiVersion', 'testMap', "env.JIRA_USERNAME", "env.JIRA_PASSWORD"]);
 		this.client = new JestReporter.JiraApi({
+			protocol,
 			host,
 			apiVersion,
+			strictSSL,
 			username,
-			password
+			password,
 		});
 		this.testMap = testMap
+		this.statusMap = {}
+	}
+
+	private async fetchStatusMap() {
+		const response = await this.client.listTransitions(this.testMap[Object.keys(this.testMap)[0]]);
+		const transitions:JiraApi.TransitionObject[] = response.transitions;
+		this.statusMap = {
+			"Done": {"transition": transitions.find((t:JiraApi.TransitionObject) => t.name === "Done")},
+			"In Progress": {"transition": transitions.find((t:JiraApi.TransitionObject) => t.name === "In Progress")}
+		}
 	}
 
 	public async onTestComplete(_:JestTest, testResult: JestTestResults) {
-		const {testResults} = testResult
-		const test = testResults[0]
-		if (!test) {
-			return 
+		if (!this.statusMap|| Object.keys(this.statusMap).length === 0) {
+			await this.fetchStatusMap()
 		}
-		if (test.status==="passed") {
-			await this.client.updateIssue(this.testMap[test.title], {status:"complete"})
-		} else if (test.status === "failed") {
-			await this.client.updateIssue("LSD-1", {status:"in progress"})
+		const {testResults} = testResult
+		for (const test of testResults) {	
+			if (test.status==="passed") {
+				await this.client.transitionIssue(this.testMap[test.title], this.statusMap["Done"])
+			} else if (test.status === "failed") {
+				await this.client.transitionIssue(this.testMap[test.title], this.statusMap["In Progress"]) 
+			}
 		}
 	}
 }
 export interface JestReporterOptions {
+	protocol: string;
 	host: string;
 	apiVersion: string;
+	strictSSL: boolean;
 	testMap: Record<string, any>;
 }
 
