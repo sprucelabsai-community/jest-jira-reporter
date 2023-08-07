@@ -166,35 +166,6 @@ export default class JestReporterTest extends AbstractSpruceTest {
 	}
 
 	@test()
-	protected static async createsExpectedStatusMap() {
-		const inProgressTransition = {
-			"id": "23",
-			"name": "In Progress",
-		}
-		const doneTransition = {
-			"id": "55",
-			"name": "Done",
-		}
-
-		this.jiraClient.listTransitionsResults = {
-			"transitions": [
-				inProgressTransition,
-				doneTransition,
-			]
-		}
-
-		await this.simulateTestComplete([{
-			title: 'test1',
-			status: 'passed'
-		}])
-
-		assert.isEqualDeep(await this.reporter.transitionMap, {
-			"Done": { "transition": doneTransition },
-			"In Progress": { "transition": inProgressTransition }
-		})
-	}
-
-	@test()
 	protected static async passesExpectedIssueIdToLookupTransitions() {
 		await this.simulateTest1Passed()
 
@@ -233,7 +204,7 @@ export default class JestReporterTest extends AbstractSpruceTest {
 			]
 		}
 
-		const err = await assert.doesThrowAsync(() => this.simulateTest1Passed())
+		const err = await assert.doesThrowAsync(() => this.simulateTest1Failed())
 
 		errorAssert.assertError(err, 'TRANSITION_NOT_FOUND', {
 			transition: 'In Progress'
@@ -263,6 +234,13 @@ export default class JestReporterTest extends AbstractSpruceTest {
 		await this.simulateTestComplete([{
 			title: 'test1',
 			status: 'passed'
+		}])
+	}
+	
+	private static async simulateTest1Failed() {
+		await this.simulateTestComplete([{
+			title: 'test1',
+			status: 'failed'
 		}])
 	}
 

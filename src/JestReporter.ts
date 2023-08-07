@@ -8,13 +8,16 @@ export default class JestReporter {
 	protected client: JiraApi;
 	public static JiraApi = JiraApi;
 	private testMap: Record<string, string>;
-	protected transitionMap?: Promise<Record<string, any>>;
 	private statusMap: Record<Status, JiraTransition> = { "passed": "Done", "failed": "In Progress" }
+	private transitions!: JiraApi.TransitionObject[];
+	private transitionLoadPromise?: Promise<void>;
 
 	public constructor(options: JestReporterOptions) {
 		const username = process.env.JIRA_USERNAME;
 		const password = process.env.JIRA_PASSWORD;
+		
 		const { protocol, host, apiVersion, strictSSL, testMap } = assertOptions({ ...options, env: process.env }, ['host', 'apiVersion', 'testMap', "env.JIRA_USERNAME", "env.JIRA_PASSWORD"]);
+
 		this.client = new JestReporter.JiraApi({
 			protocol,
 			host,
@@ -26,25 +29,18 @@ export default class JestReporter {
 		this.testMap = testMap
 	}
 
-	private async fetchTransitionMap() {
-		const { transitions } = await this.client.listTransitions(this.getIssueId(this.getFirstTestTitle()))
-
-		const jiraDoneCode = this.getJiraCodeForStatus("passed")
-		const jiraInProgressCode = this.getJiraCodeForStatus("failed")
-
-		const doneTransition = transitions.find((t: JiraApi.TransitionObject) => t.name === jiraDoneCode);
-		const inProgressTransition = transitions.find((t: JiraApi.TransitionObject) => t.name === jiraInProgressCode);
-
-		if (!inProgressTransition) {
-			this.throwTransitionNotFound(jiraInProgressCode);
-		} else if (!doneTransition) {
-			this.throwTransitionNotFound(jiraDoneCode);
+	private getTransitionForStatus(status: Status) {
+		const code = this.getJiraCodeForStatus(status);
+		const transition = this.transitions.find((t: JiraApi.TransitionObject) => t.name === code);
+		if (!transition) {
+			this.throwTransitionNotFound(code);
 		}
+		return transition
+	}
 
-		return {
-			[jiraDoneCode]: { "transition": doneTransition },
-			[jiraInProgressCode]: { "transition": inProgressTransition }
-		};
+	private async loadTransitions() {
+		const { transitions } = await this.client.listTransitions(this.getIssueId(this.getFirstTestTitle()));
+		this.transitions = transitions;
 	}
 
 	private throwTransitionNotFound(transitionCode: JiraTransition) {
@@ -55,34 +51,36 @@ export default class JestReporter {
 		return Object.keys(this.testMap)[0];
 	}
 
-	private async getTransitionForStatus(status: Status) {
-		const transitionMap = await this.transitionMap
-		const jiraCodeForStatus = this.getJiraCodeForStatus(status)
-		const transition = transitionMap![jiraCodeForStatus]
-		return transition
-	}
-
 	private getJiraCodeForStatus(status: Status) {
 		return this.statusMap[status];
 	}
 
 	public async onTestComplete(_: JestTest, testResult: JestTestResults) {
-		if (!this.transitionMap) {
-			this.transitionMap = this.fetchTransitionMap()
-		}
+		await this.optionallyLoadTransitions();
 
 		const { testResults } = testResult
 
 		for (const test of testResults) {
 			const issueId = this.getIssueId(test.title)
-			await this.client.transitionIssue(issueId, await this.getTransitionForStatus(test.status))
+			await this.client.transitionIssue(issueId, {
+				transition: this.getTransitionForStatus(test.status)
+			})
 		}
+	}
+
+	private async optionallyLoadTransitions() {
+		if (!this.transitionLoadPromise) {
+			this.transitionLoadPromise = this.loadTransitions();
+		}
+
+		await this.transitionLoadPromise;
 	}
 
 	private getIssueId(title: string) {
 		return this.testMap[title];
 	}
 }
+
 export interface JestReporterOptions {
 	protocol: string;
 	host: string;
