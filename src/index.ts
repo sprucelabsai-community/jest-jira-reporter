@@ -1,1 +1,2 @@
-//exports go here
+import JestReporter from './JestReporter'
+export default JestReporter
