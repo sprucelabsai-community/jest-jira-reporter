@@ -4,6 +4,9 @@
   "main": "index.js",
   "repository": "git@github.com:sprucelabsai-community/jest-jira-reporter.git",
   "license": "MIT",
+  "skill": {
+    "namespace": "jest-jira-reporter"
+  },
   "scripts": {
     "build.ci": "yarn build.tsc && yarn build.resolve-paths && yarn lint",
     "build.dev": "yarn build.tsc --sourceMap ; yarn resolve-paths.lint",
@@ -64,7 +67,10 @@
     }
   },
   "dependencies": {
-    "@sprucelabs/schema": "^29.0.20",
+    "@sprucelabs/error": "^5.1.19",
+    "@sprucelabs/schema": "^29.0.23",
+    "@sprucelabs/spruce-core-schemas": "^39.0.29",
+    "@sprucelabs/spruce-skill-utils": "^29.1.50",
     "jira-client": "^8.2.2"
   }
 }

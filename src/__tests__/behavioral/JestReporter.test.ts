@@ -42,7 +42,7 @@ export default class JestReporterTest extends AbstractSpruceTest {
 	@test('passes with proper options 1', 'https', 'localhost:8080', '1', true)
 	@test('passes with proper options 2', 'https', 'localhost:8081', '2', true)
 	protected static async properlyConfiguresJiraClient(protocol: string, host: string, apiVersion: string, strictSSL: boolean) {
-		this.reporter = this.Reporter({	protocol, host, apiVersion, strictSSL })
+		this.reporter = this.Reporter({ protocol, host, apiVersion, strictSSL })
 		assert.isInstanceOf(this.jiraClient, JiraApi)
 		assert.isEqualDeep(this.jiraClient.constructorOptions, {
 			protocol,
@@ -140,10 +140,11 @@ export default class JestReporterTest extends AbstractSpruceTest {
 		await this.simulateTestComplete([{
 			title: 'test1',
 			status: 'passed'
-		},{
+		}, {
 			title: 'test2',
 			status: 'failed'
 		}])
+
 		this.assertUpdateOptionsEqual([{
 			issueId: 'LSD-1',
 			issueTransition: {
@@ -151,27 +152,130 @@ export default class JestReporterTest extends AbstractSpruceTest {
 					id: '31',
 					name: 'Done'
 				}
-			}},{
+			}
+		}, {
 			issueId: 'TACO-3',
 			issueTransition: {
 				transition: {
 					id: '21',
 					name: 'In Progress'
 				}
-			}}])
+			}
+		}])
 
-		// refactor updateIssueOptions to be an array
-		// update this.assertUpdateOptionsEqual to check the first item in the array
-		// rename this.assertUpdateOptionsEqual to this.assertFirstUpdateOptions
-		// add this.assertUpdateOptionsEqual and let that accept an array of results
-		// update this.assertFirstUpdateOptionsEqual to use new this.updateOptionsEqual (passing an arary )
+	}
+
+	@test()
+	protected static async createsExpectedStatusMap() {
+		const inProgressTransition = {
+			"id": "23",
+			"name": "In Progress",
+		}
+		const doneTransition = {
+			"id": "55",
+			"name": "Done",
+		}
+
+		this.jiraClient.listTransitionsResults = {
+			"transitions": [
+				inProgressTransition,
+				doneTransition,
+			]
+		}
+
+		await this.simulateTestComplete([{
+			title: 'test1',
+			status: 'passed'
+		}])
+
+		assert.isEqualDeep(await this.reporter.transitionMap, {
+			"Done": { "transition": doneTransition },
+			"In Progress": { "transition": inProgressTransition }
+		})
+	}
+
+	@test()
+	protected static async passesExpectedIssueIdToLookupTransitions() {
+		await this.simulateTest1Passed()
+
+		this.assertListTransitionsIssueId('LSD-1')
+
+		this.reporter = this.Reporter({
+			testMap: {
+				'test1': 'TACO-3'
+			}
+		})
+
+		await this.simulateTest1Passed()
+
+		this.assertListTransitionsIssueId('TACO-3')
+	}
+
+	@test()
+	protected static async onlyCallsListTransitionsOnceEvenWhenManyTestsCompleteAsync() {
+		await Promise.all([
+			this.simulateTest1Passed(),
+			this.simulateTest1Passed(),
+			this.simulateTest1Passed()
+		])
+
+		assert.isEqual(this.jiraClient.listTransitionsHitCount, 1)
+	}
+
+	@test()
+	protected static async throwsWhenCantFindInProgressTransition() {
+		this.jiraClient.listTransitionsResults = {
+			"transitions": [
+				{
+					"id": "55",
+					"name": "Done",
+				},
+			]
+		}
+
+		const err = await assert.doesThrowAsync(() => this.simulateTest1Passed())
+
+		errorAssert.assertError(err, 'TRANSITION_NOT_FOUND', {
+			transition: 'In Progress'
+		})
+	}
+
+	@test()
+	protected static async throwsWhenCantFindDoneTransition() {
+		this.jiraClient.listTransitionsResults = {
+			"transitions": [
+				{
+					"id": "23",
+					"name": "In Progress",
+				},
+			]
+		}
+
+		const err = await assert.doesThrowAsync(() => this.simulateTest1Passed())
+
+		errorAssert.assertError(err, 'TRANSITION_NOT_FOUND', {
+			transition: 'Done'
+		})
+	}
+
+
+	private static async simulateTest1Passed() {
+		await this.simulateTestComplete([{
+			title: 'test1',
+			status: 'passed'
+		}])
+	}
+
+
+	private static assertListTransitionsIssueId(expected: string) {
+		assert.isEqual(this.jiraClient.lastListTransitionsIssueId, expected)
 	}
 
 	private static assertFirstUpdateOptionsEqual(expected: { issueId: string; issueTransition: JiraApi.TransitionObject }) {
 		this.assertUpdateOptionsEqual([expected])
 	}
 
-	private static assertUpdateOptionsEqual(expected: { issueId: string; issueTransition: JiraApi.TransitionObject}[]) {
+	private static assertUpdateOptionsEqual(expected: { issueId: string; issueTransition: JiraApi.TransitionObject }[]) {
 		assert.isEqualDeep(this.jiraClient.updateIssueOptions, expected)
 	}
 
@@ -206,34 +310,41 @@ export default class JestReporterTest extends AbstractSpruceTest {
 
 class SpyJestReporter extends JestReporter {
 	public client!: JiraApi
+	public transitionMap!: Promise<Record<string, any>>
 }
 
 class StubJiraApi extends JiraApi {
+	public lastListTransitionsIssueId?: string
 	public constructorOptions: JiraApi.JiraApiOptions
 	public updateIssueOptions: { issueId: string, issueTransition: JiraApi.TransitionObject }[] = []
+	public listTransitionsHitCount = 0
+	public listTransitionsResults = {
+		"transitions": [
+			{
+				"id": "21",
+				"name": "In Progress",
+			},
+			{
+				"id": "31",
+				"name": "Done",
+			},
+		]
+	}
+
 	public constructor(options: JiraApi.JiraApiOptions) {
 		super(options)
 		this.constructorOptions = options
 	}
 
 	public async listTransitions(issueId: string): Promise<JiraApi.JsonResponse> {
-		const transitions = {
-			"transitions": [
-			  {
-				"id": "21",
-				"name": "In Progress",
-			  },
-			  {
-				"id": "31",
-				"name": "Done",
-			  },
-			]
-		  }
-		  return transitions 
+		this.lastListTransitionsIssueId = issueId
+		this.listTransitionsHitCount ++
+		return this.listTransitionsResults
 	}
 
 	public async transitionIssue(issueId: string, issueTransition: JiraApi.TransitionObject): Promise<JiraApi.JsonResponse> {
-		this.updateIssueOptions.push({issueId, issueTransition})
+		this.updateIssueOptions.push({ issueId, issueTransition })
+		return {}
 	}
 }
 
