@@ -28,10 +28,18 @@ export default class JestReporter {
 	private async fetchStatusMap() {
 		const response = await this.client.listTransitions(this.testMap[Object.keys(this.testMap)[0]]);
 		const transitions:JiraApi.TransitionObject[] = response.transitions;
-		this.statusMap = {
-			"Done": {"transition": transitions.find((t:JiraApi.TransitionObject) => t.name === "Done")},
-			"In Progress": {"transition": transitions.find((t:JiraApi.TransitionObject) => t.name === "In Progress")}
+		  
+		const doneTransition = transitions.find((t: JiraApi.TransitionObject) => t.name === "Done");
+		const inProgressTransition = transitions.find((t: JiraApi.TransitionObject) => t.name === "In Progress");
+	  
+		if (!doneTransition || !inProgressTransition) {
+		  throw new Error('Failed to populate statusMap: required transitions not found');
 		}
+	  
+		this.statusMap = {
+		  "Done": {"transition": doneTransition},
+		  "In Progress": {"transition": inProgressTransition}
+		};
 	}
 
 	public async onTestComplete(_:JestTest, testResult: JestTestResults) {
