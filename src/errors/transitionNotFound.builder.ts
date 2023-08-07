@@ -1,5 +1,4 @@
-import  { buildErrorSchema } from '@sprucelabs/schema'
-
+import { buildErrorSchema } from '@sprucelabs/schema'
 
 export default buildErrorSchema({
 	id: 'transitionNotFound',
@@ -10,15 +9,17 @@ export default buildErrorSchema({
 			label: 'Transition',
 			isRequired: true,
 			options: {
-				choices: [{
-					value: 'In Progress',
-					label: 'In Progress'
-				},{
-					value: 'Done',
-					label: 'Done'
-				}]
-			}
-		}
-	}
+				choices: [
+					{
+						value: 'In Progress',
+						label: 'In Progress',
+					},
+					{
+						value: 'Done',
+						label: 'Done',
+					},
+				],
+			},
+		},
+	},
 })
-
