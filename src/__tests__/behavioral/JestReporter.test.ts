@@ -39,14 +39,16 @@ export default class JestReporterTest extends AbstractSpruceTest {
 	}
 
 
-	@test('passes with proper options 1', 'http://localhost:8080', '1')
-	@test('passes with proper options 2', 'http://localhost:8081', '2')
-	protected static async properlyConfiguresJiraClient(host: string, apiVersion: string) {
-		this.reporter = this.Reporter({ host, apiVersion })
+	@test('passes with proper options 1', 'https', 'localhost:8080', '1', true)
+	@test('passes with proper options 2', 'https', 'localhost:8081', '2', true)
+	protected static async properlyConfiguresJiraClient(protocol: string, host: string, apiVersion: string, strictSSL: boolean) {
+		this.reporter = this.Reporter({	protocol, host, apiVersion, strictSSL })
 		assert.isInstanceOf(this.jiraClient, JiraApi)
 		assert.isEqualDeep(this.jiraClient.constructorOptions, {
+			protocol,
 			host,
 			apiVersion,
+			strictSSL,
 			username: process.env.JIRA_USERNAME,
 			password: process.env.JIRA_PASSWORD
 		})
@@ -66,10 +68,13 @@ export default class JestReporterTest extends AbstractSpruceTest {
 			'status': 'passed'
 		}])
 
-		this.assertUpdateOptionsEqual({
+		this.assertFirstUpdateOptionsEqual({
 			issueId: 'LSD-1',
-			issueUpdate: {
-				status: 'complete'
+			issueTransition: {
+				transition: {
+					id: '31',
+					name: 'Done'
+				}
 			}
 		})
 	}
@@ -83,10 +88,13 @@ export default class JestReporterTest extends AbstractSpruceTest {
 			'status': 'failed'
 		}])
 
-		this.assertUpdateOptionsEqual({
+		this.assertFirstUpdateOptionsEqual({
 			issueId: 'LSD-1',
-			issueUpdate: {
-				status: 'in progress'
+			issueTransition: {
+				transition: {
+					id: '21',
+					name: 'In Progress'
+				}
 			}
 		})
 	}
@@ -98,20 +106,60 @@ export default class JestReporterTest extends AbstractSpruceTest {
 			status: 'passed'
 		}])
 
-		this.assertUpdateOptionsEqual({
+		this.assertFirstUpdateOptionsEqual({
 			issueId: 'TACO-3',
-			issueUpdate: {
-				status: 'complete'
+			issueTransition: {
+				transition: {
+					id: '31',
+					name: 'Done'
+				}
 			}
 		})
 	}
 
 	@test()
 	protected static async failingTestMatchesIssueId() {
+		await this.simulateTestComplete([{
+			title: 'test2',
+			status: 'failed'
+		}])
+
+		this.assertFirstUpdateOptionsEqual({
+			issueId: 'TACO-3',
+			issueTransition: {
+				transition: {
+					id: '21',
+					name: 'In Progress'
+				}
+			}
+		})
 	}
 
 	@test()
 	protected static async canUpdateManyTestsAtOnce() {
+		await this.simulateTestComplete([{
+			title: 'test1',
+			status: 'passed'
+		},{
+			title: 'test2',
+			status: 'failed'
+		}])
+		this.assertUpdateOptionsEqual([{
+			issueId: 'LSD-1',
+			issueTransition: {
+				transition: {
+					id: '31',
+					name: 'Done'
+				}
+			}},{
+			issueId: 'TACO-3',
+			issueTransition: {
+				transition: {
+					id: '21',
+					name: 'In Progress'
+				}
+			}}])
+
 		// refactor updateIssueOptions to be an array
 		// update this.assertUpdateOptionsEqual to check the first item in the array
 		// rename this.assertUpdateOptionsEqual to this.assertFirstUpdateOptions
@@ -119,7 +167,11 @@ export default class JestReporterTest extends AbstractSpruceTest {
 		// update this.assertFirstUpdateOptionsEqual to use new this.updateOptionsEqual (passing an arary )
 	}
 
-	private static assertUpdateOptionsEqual(expected: { issueId: string; issueUpdate: { status: string } }) {
+	private static assertFirstUpdateOptionsEqual(expected: { issueId: string; issueTransition: JiraApi.TransitionObject }) {
+		this.assertUpdateOptionsEqual([expected])
+	}
+
+	private static assertUpdateOptionsEqual(expected: { issueId: string; issueTransition: JiraApi.TransitionObject}[]) {
 		assert.isEqualDeep(this.jiraClient.updateIssueOptions, expected)
 	}
 
@@ -137,8 +189,10 @@ export default class JestReporterTest extends AbstractSpruceTest {
 
 	private static Reporter(options?: Partial<JestReporterOptions>): SpyJestReporter {
 		return new SpyJestReporter({
-			host: 'http://localhost:8080',
-			apiVersion: '1',
+			protocol: 'https',
+			host: 'localhost:8080',
+			apiVersion: '2',
+			strictSSL: true,
 			testMap: {
 				test1: 'LSD-1',
 				test2: 'TACO-3'
@@ -156,14 +210,30 @@ class SpyJestReporter extends JestReporter {
 
 class StubJiraApi extends JiraApi {
 	public constructorOptions: JiraApi.JiraApiOptions
-	public updateIssueOptions?: { issueId: string, issueUpdate: JiraApi.IssueObject }
+	public updateIssueOptions: { issueId: string, issueTransition: JiraApi.TransitionObject }[] = []
 	public constructor(options: JiraApi.JiraApiOptions) {
 		super(options)
 		this.constructorOptions = options
 	}
 
-	public async updateIssue(issueId: string, issueUpdate: JiraApi.IssueObject, query?: JiraApi.Query | undefined): Promise<JiraApi.JsonResponse> {
-		this.updateIssueOptions = { issueId, issueUpdate }
+	public async listTransitions(issueId: string): Promise<JiraApi.JsonResponse> {
+		const transitions = {
+			"transitions": [
+			  {
+				"id": "21",
+				"name": "In Progress",
+			  },
+			  {
+				"id": "31",
+				"name": "Done",
+			  },
+			]
+		  }
+		  return transitions 
+	}
+
+	public async transitionIssue(issueId: string, issueTransition: JiraApi.TransitionObject): Promise<JiraApi.JsonResponse> {
+		this.updateIssueOptions.push({issueId, issueTransition})
 	}
 }
 
