@@ -9,6 +9,7 @@ const reporter = new JestReporter({
 	testMap: { test1: 'LTEST-1', test2: 'LTEST-2' },
 })
 
+// eslint-disable-next-line @typescript-eslint/no-floating-promises
 reporter.onTestComplete(
 	{},
 	{
