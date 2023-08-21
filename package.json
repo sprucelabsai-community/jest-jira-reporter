@@ -1,6 +1,6 @@
 {
   "name": "@sprucelabs/jest-jira-reporter",
-  "version": "1.0.0",
+  "version": "0.0.2",
   "files": [
     "build"
   ],
@@ -23,7 +23,7 @@
     "build.dev": "yarn build.tsc --sourceMap ; yarn resolve-paths.lint",
     "build.dist": "tsc --project tsconfig.dist.json && yarn build.resolve-paths && mv build esm && yarn build.esm-postbuild && yarn build.tsc && yarn build.resolve-paths && mv esm build/ && yarn clean.dist",
     "build.copy-files": "mkdir -p build && rsync -avzq --exclude='*.ts' ./src/ ./build/",
-    "build.esm-postbuild": "esm-postbuild --target esm --patterns '**/*.js'", 
+    "build.esm-postbuild": "esm-postbuild --target esm --patterns '**/*.js'",
     "build.resolve-paths": "resolve-path-aliases --target build --patterns '**/*.js,**/*.d.ts'",
     "build.tsc": "yarn build.copy-files && tsc",
     "clean": "yarn clean.build",
