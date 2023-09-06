@@ -50,7 +50,7 @@
     "@sprucelabs/jest-json-reporter": "^7.0.89",
     "@sprucelabs/resolve-path-aliases": "^1.1.242",
     "@sprucelabs/semantic-release": "^4.0.8",
-    "@sprucelabs/spruce-test-fixtures": "^60.0.93",
+    "@sprucelabs/spruce-test-fixtures": "^60.0.94",
     "@sprucelabs/test": "^8.0.13",
     "@sprucelabs/test-utils": "^4.0.36",
     "@types/jira-client": "^7.1.6",
@@ -90,7 +90,7 @@
     "@sprucelabs/error": "^5.1.27",
     "@sprucelabs/schema": "^29.0.46",
     "@sprucelabs/spruce-core-schemas": "^39.0.62",
-    "@sprucelabs/spruce-skill-utils": "^30.0.19",
+    "@sprucelabs/spruce-skill-utils": "^30.0.20",
     "jira-client": "^8.2.2"
   }
 }
