@@ -55,7 +55,7 @@
     "@sprucelabs/test-utils": "^4.0.46",
     "@types/jira-client": "^7.1.7",
     "@types/node": "^20.6.4",
-    "@types/photoshop": "^25.0.0",
+    "@types/photoshop": "^25.0.1",
     "chokidar-cli": "^3.0.0",
     "concurrently": "^8.2.1",
     "eslint": "^8.50.0",
