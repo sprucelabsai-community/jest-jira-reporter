@@ -90,7 +90,7 @@
     "@sprucelabs/error": "^5.1.35",
     "@sprucelabs/schema": "^29.0.68",
     "@sprucelabs/spruce-core-schemas": "^39.0.100",
-    "@sprucelabs/spruce-skill-utils": "^30.0.50",
+    "@sprucelabs/spruce-skill-utils": "^30.0.51",
     "jira-client": "^8.2.2"
   }
 }
