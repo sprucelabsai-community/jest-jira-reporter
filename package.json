@@ -50,7 +50,7 @@
     "@sprucelabs/jest-json-reporter": "^7.0.132",
     "@sprucelabs/resolve-path-aliases": "^1.1.269",
     "@sprucelabs/semantic-release": "^4.0.8",
-    "@sprucelabs/spruce-test-fixtures": "^60.1.91",
+    "@sprucelabs/spruce-test-fixtures": "^60.1.92",
     "@sprucelabs/test": "^8.0.35",
     "@sprucelabs/test-utils": "^4.0.85",
     "@types/jira-client": "^7.1.9",
