@@ -47,12 +47,12 @@
   },
   "devDependencies": {
     "@sprucelabs/esm-postbuild": "^5.0.111",
-    "@sprucelabs/jest-json-reporter": "^7.0.135",
+    "@sprucelabs/jest-json-reporter": "^7.0.136",
     "@sprucelabs/resolve-path-aliases": "^1.1.272",
     "@sprucelabs/semantic-release": "^4.0.8",
-    "@sprucelabs/spruce-test-fixtures": "^60.1.102",
-    "@sprucelabs/test": "^8.0.36",
-    "@sprucelabs/test-utils": "^4.0.88",
+    "@sprucelabs/spruce-test-fixtures": "^60.1.103",
+    "@sprucelabs/test": "^8.0.37",
+    "@sprucelabs/test-utils": "^4.0.89",
     "@types/jira-client": "^7.1.9",
     "@types/node": "^20.10.4",
     "@types/photoshop": "^25.0.4",
@@ -65,7 +65,7 @@
     "prettier": "^3.1.1",
     "ts-node": "^10.9.2",
     "tsc-watch": "^6.0.4",
-    "tsconfig-paths": "^4.2.0",
+    "tsconfig-paths": "^3.15.0",
     "typescript": "^5.3.3"
   },
   "jest": {
@@ -87,10 +87,10 @@
     }
   },
   "dependencies": {
-    "@sprucelabs/error": "^5.1.54",
-    "@sprucelabs/schema": "^29.3.2",
-    "@sprucelabs/spruce-core-schemas": "^39.0.159",
-    "@sprucelabs/spruce-skill-utils": "^30.1.47",
+    "@sprucelabs/error": "^5.1.55",
+    "@sprucelabs/schema": "^29.3.3",
+    "@sprucelabs/spruce-core-schemas": "^39.0.160",
+    "@sprucelabs/spruce-skill-utils": "^30.1.48",
     "jira-client": "^8.2.2"
   }
 }
