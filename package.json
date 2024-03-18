@@ -47,14 +47,14 @@
   },
   "devDependencies": {
     "@sprucelabs/esm-postbuild": "^5.0.171",
-    "@sprucelabs/jest-json-reporter": "^7.0.183",
+    "@sprucelabs/jest-json-reporter": "^7.0.184",
     "@sprucelabs/resolve-path-aliases": "^1.1.288",
     "@sprucelabs/semantic-release": "^4.0.8",
     "@sprucelabs/spruce-test-fixtures": "^60.1.294",
     "@sprucelabs/test": "^8.0.44",
-    "@sprucelabs/test-utils": "^4.0.122",
+    "@sprucelabs/test-utils": "^4.0.123",
     "@types/jira-client": "^7.1.9",
-    "@types/node": "^20.11.28",
+    "@types/node": "^20.11.29",
     "@types/photoshop": "^25.0.4",
     "chokidar-cli": "^3.0.0",
     "concurrently": "^8.2.2",
@@ -88,9 +88,9 @@
   },
   "dependencies": {
     "@sprucelabs/error": "^5.1.76",
-    "@sprucelabs/schema": "^29.4.23",
-    "@sprucelabs/spruce-core-schemas": "^39.0.257",
-    "@sprucelabs/spruce-skill-utils": "^30.3.16",
+    "@sprucelabs/schema": "^29.4.24",
+    "@sprucelabs/spruce-core-schemas": "^39.0.258",
+    "@sprucelabs/spruce-skill-utils": "^30.3.17",
     "jira-client": "^8.2.2"
   }
 }
