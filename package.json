@@ -54,7 +54,7 @@
     "@sprucelabs/test": "^8.0.50",
     "@sprucelabs/test-utils": "^4.0.157",
     "@types/jira-client": "^7.1.9",
-    "@types/node": "^20.12.4",
+    "@types/node": "^20.12.7",
     "@types/photoshop": "^25.0.4",
     "chokidar-cli": "^3.0.0",
     "concurrently": "^8.2.2",
@@ -66,7 +66,7 @@
     "ts-node": "^10.9.2",
     "tsc-watch": "^6.2.0",
     "tsconfig-paths": "^4.2.0",
-    "typescript": "^5.4.4"
+    "typescript": "^5.4.5"
   },
   "jest": {
     "testRunner": "jest-circus/runner",
