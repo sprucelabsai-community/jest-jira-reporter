@@ -1,10 +1,10 @@
 export interface JestTestResult {
-	title: string
-	status: 'passed' | 'failed'
+    title: string
+    status: 'passed' | 'failed'
 }
 
 export interface JestTestResults {
-	testResults: JestTestResult[]
+    testResults: JestTestResult[]
 }
 
 export interface JestTest {}
