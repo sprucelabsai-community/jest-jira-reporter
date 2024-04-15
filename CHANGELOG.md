@@ -1,3 +1,67 @@
+## [0.0.560](https://github.com/sprucelabsai-community/jest-jira-reporter/compare/v0.0.559...v0.0.560) (2024-04-05)
+
+## [0.0.559](https://github.com/sprucelabsai-community/jest-jira-reporter/compare/v0.0.558...v0.0.559) (2024-04-05)
+
+## [0.0.558](https://github.com/sprucelabsai-community/jest-jira-reporter/compare/v0.0.557...v0.0.558) (2024-04-04)
+
+## [0.0.557](https://github.com/sprucelabsai-community/jest-jira-reporter/compare/v0.0.556...v0.0.557) (2024-04-04)
+
+## [0.0.556](https://github.com/sprucelabsai-community/jest-jira-reporter/compare/v0.0.555...v0.0.556) (2024-04-04)
+
+## [0.0.555](https://github.com/sprucelabsai-community/jest-jira-reporter/compare/v0.0.554...v0.0.555) (2024-04-04)
+
+## [0.0.554](https://github.com/sprucelabsai-community/jest-jira-reporter/compare/v0.0.553...v0.0.554) (2024-04-03)
+
+## [0.0.553](https://github.com/sprucelabsai-community/jest-jira-reporter/compare/v0.0.552...v0.0.553) (2024-04-03)
+
+## [0.0.552](https://github.com/sprucelabsai-community/jest-jira-reporter/compare/v0.0.551...v0.0.552) (2024-04-03)
+
+## [0.0.551](https://github.com/sprucelabsai-community/jest-jira-reporter/compare/v0.0.550...v0.0.551) (2024-04-03)
+
+## [0.0.550](https://github.com/sprucelabsai-community/jest-jira-reporter/compare/v0.0.549...v0.0.550) (2024-04-03)
+
+## [0.0.549](https://github.com/sprucelabsai-community/jest-jira-reporter/compare/v0.0.548...v0.0.549) (2024-04-02)
+
+## [0.0.548](https://github.com/sprucelabsai-community/jest-jira-reporter/compare/v0.0.547...v0.0.548) (2024-04-01)
+
+## [0.0.547](https://github.com/sprucelabsai-community/jest-jira-reporter/compare/v0.0.546...v0.0.547) (2024-04-01)
+
+## [0.0.546](https://github.com/sprucelabsai-community/jest-jira-reporter/compare/v0.0.545...v0.0.546) (2024-04-01)
+
+## [0.0.545](https://github.com/sprucelabsai-community/jest-jira-reporter/compare/v0.0.544...v0.0.545) (2024-04-01)
+
+## [0.0.544](https://github.com/sprucelabsai-community/jest-jira-reporter/compare/v0.0.543...v0.0.544) (2024-04-01)
+
+## [0.0.543](https://github.com/sprucelabsai-community/jest-jira-reporter/compare/v0.0.542...v0.0.543) (2024-03-31)
+
+## [0.0.542](https://github.com/sprucelabsai-community/jest-jira-reporter/compare/v0.0.541...v0.0.542) (2024-03-31)
+
+## [0.0.541](https://github.com/sprucelabsai-community/jest-jira-reporter/compare/v0.0.540...v0.0.541) (2024-03-31)
+
+## [0.0.540](https://github.com/sprucelabsai-community/jest-jira-reporter/compare/v0.0.539...v0.0.540) (2024-03-31)
+
+## [0.0.539](https://github.com/sprucelabsai-community/jest-jira-reporter/compare/v0.0.538...v0.0.539) (2024-03-30)
+
+## [0.0.538](https://github.com/sprucelabsai-community/jest-jira-reporter/compare/v0.0.537...v0.0.538) (2024-03-30)
+
+## [0.0.537](https://github.com/sprucelabsai-community/jest-jira-reporter/compare/v0.0.536...v0.0.537) (2024-03-30)
+
+## [0.0.536](https://github.com/sprucelabsai-community/jest-jira-reporter/compare/v0.0.535...v0.0.536) (2024-03-30)
+
+## [0.0.535](https://github.com/sprucelabsai-community/jest-jira-reporter/compare/v0.0.534...v0.0.535) (2024-03-30)
+
+## [0.0.534](https://github.com/sprucelabsai-community/jest-jira-reporter/compare/v0.0.533...v0.0.534) (2024-03-29)
+
+## [0.0.533](https://github.com/sprucelabsai-community/jest-jira-reporter/compare/v0.0.532...v0.0.533) (2024-03-29)
+
+## [0.0.532](https://github.com/sprucelabsai-community/jest-jira-reporter/compare/v0.0.531...v0.0.532) (2024-03-29)
+
+## [0.0.531](https://github.com/sprucelabsai-community/jest-jira-reporter/compare/v0.0.530...v0.0.531) (2024-03-29)
+
+## [0.0.530](https://github.com/sprucelabsai-community/jest-jira-reporter/compare/v0.0.529...v0.0.530) (2024-03-28)
+
+## [0.0.529](https://github.com/sprucelabsai-community/jest-jira-reporter/compare/v0.0.528...v0.0.529) (2024-03-28)
+
 ## [0.0.528](https://github.com/sprucelabsai-community/jest-jira-reporter/compare/v0.0.527...v0.0.528) (2024-03-28)
 
 ## [0.0.527](https://github.com/sprucelabsai-community/jest-jira-reporter/compare/v0.0.526...v0.0.527) (2024-03-28)
