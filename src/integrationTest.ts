@@ -9,7 +9,7 @@ const reporter = new JestReporter({
     testMap: { test1: 'LTEST-1', test2: 'LTEST-2' },
 })
 
-reporter.onTestComplete(
+void reporter.onTestComplete(
     {},
     {
         testResults: [
