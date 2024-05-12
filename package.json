@@ -51,8 +51,8 @@
   },
   "devDependencies": {
     "@sprucelabs/esm-postbuild": "^6.0.20",
-    "@sprucelabs/jest-json-reporter": "^8.0.25",
-    "@sprucelabs/resolve-path-aliases": "^2.0.21",
+    "@sprucelabs/jest-json-reporter": "^8.0.26",
+    "@sprucelabs/resolve-path-aliases": "^2.0.22",
     "@sprucelabs/semantic-release": "^5.0.1",
     "@sprucelabs/spruce-test-fixtures": "^61.1.35",
     "@sprucelabs/test": "^9.0.13",
@@ -91,7 +91,7 @@
   },
   "dependencies": {
     "@sprucelabs/error": "^6.0.23",
-    "@sprucelabs/schema": "^30.0.39",
+    "@sprucelabs/schema": "^30.0.40",
     "@sprucelabs/spruce-core-schemas": "^39.0.294",
     "@sprucelabs/spruce-skill-utils": "^30.4.29",
     "jira-client": "^8.2.2"
