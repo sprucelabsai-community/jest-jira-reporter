@@ -50,13 +50,13 @@
     "watch.tsc": "tsc -w"
   },
   "devDependencies": {
-    "@sprucelabs/esm-postbuild": "^6.0.69",
-    "@sprucelabs/jest-json-reporter": "^8.0.89",
-    "@sprucelabs/resolve-path-aliases": "^2.0.64",
+    "@sprucelabs/esm-postbuild": "^6.0.70",
+    "@sprucelabs/jest-json-reporter": "^8.0.90",
+    "@sprucelabs/resolve-path-aliases": "^2.0.65",
     "@sprucelabs/semantic-release": "^5.0.2",
     "@sprucelabs/spruce-test-fixtures": "^61.1.35",
     "@sprucelabs/test": "^9.0.36",
-    "@sprucelabs/test-utils": "^5.1.19",
+    "@sprucelabs/test-utils": "^5.1.20",
     "@types/jira-client": "^7.1.9",
     "@types/node": "^20.14.9",
     "@types/photoshop": "^25.0.4",
@@ -90,8 +90,8 @@
     }
   },
   "dependencies": {
-    "@sprucelabs/error": "^6.0.86",
-    "@sprucelabs/schema": "^30.0.128",
+    "@sprucelabs/error": "^6.0.87",
+    "@sprucelabs/schema": "^30.0.129",
     "@sprucelabs/spruce-core-schemas": "^39.0.294",
     "@sprucelabs/spruce-skill-utils": "^30.4.29",
     "jira-client": "^8.2.2"
