@@ -1,6 +1,6 @@
 {
   "name": "@sprucelabs/jest-jira-reporter",
-  "version": "1.0.146",
+  "version": "1.0.147",
   "files": [
     "build"
   ],
