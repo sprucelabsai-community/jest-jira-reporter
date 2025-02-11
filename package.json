@@ -51,17 +51,17 @@
   },
   "devDependencies": {
     "@sprucelabs/esm-postbuild": "^6.0.544",
-    "@sprucelabs/jest-json-reporter": "^8.0.573",
+    "@sprucelabs/jest-json-reporter": "^8.0.574",
     "@sprucelabs/resolve-path-aliases": "^2.0.529",
     "@sprucelabs/semantic-release": "^5.0.2",
     "@sprucelabs/spruce-test-fixtures": "^61.1.35",
-    "@sprucelabs/test": "^9.0.69",
-    "@sprucelabs/test-utils": "^5.2.5",
+    "@sprucelabs/test": "^9.0.70",
+    "@sprucelabs/test-utils": "^5.2.6",
     "@types/jira-client": "^7.1.9",
     "@types/node": "^22.13.1",
     "@types/photoshop": "^25.0.4",
     "chokidar-cli": "^3.0.0",
-    "eslint": "^9.20.0",
+    "eslint": "^9.20.1",
     "eslint-config-spruce": "^11.2.26",
     "jest": "^29.7.0",
     "jest-circus": "^29.7.0",
@@ -90,8 +90,8 @@
     }
   },
   "dependencies": {
-    "@sprucelabs/error": "^6.0.572",
-    "@sprucelabs/schema": "^31.0.32",
+    "@sprucelabs/error": "^6.0.573",
+    "@sprucelabs/schema": "^31.0.33",
     "@sprucelabs/spruce-core-schemas": "^39.0.294",
     "@sprucelabs/spruce-skill-utils": "^30.4.29",
     "jira-client": "^8.2.2"
