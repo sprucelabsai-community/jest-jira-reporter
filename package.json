@@ -91,7 +91,7 @@
   },
   "dependencies": {
     "@sprucelabs/error": "^6.0.572",
-    "@sprucelabs/schema": "^31.0.31",
+    "@sprucelabs/schema": "^31.0.32",
     "@sprucelabs/spruce-core-schemas": "^39.0.294",
     "@sprucelabs/spruce-skill-utils": "^30.4.29",
     "jira-client": "^8.2.2"
