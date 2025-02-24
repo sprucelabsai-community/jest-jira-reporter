@@ -1,3 +1,5 @@
+## [1.0.682](https://github.com/sprucelabsai-community/jest-jira-reporter/compare/v1.0.681...v1.0.682) (2025-02-24)
+
 ## [1.0.681](https://github.com/sprucelabsai-community/jest-jira-reporter/compare/v1.0.680...v1.0.681) (2025-02-23)
 
 ## [1.0.680](https://github.com/sprucelabsai-community/jest-jira-reporter/compare/v1.0.679...v1.0.680) (2025-02-23)
