@@ -1,3 +1,10 @@
+# [2.0.0](https://github.com/sprucelabsai-community/jest-jira-reporter/compare/v1.0.736...v2.0.0) (2025-06-10)
+
+
+### Breaking Changes
+
+* jest upgrade ([31d5f14](https://github.com/sprucelabsai-community/jest-jira-reporter/commit/31d5f14))
+
 ## [1.0.736](https://github.com/sprucelabsai-community/jest-jira-reporter/compare/v1.0.735...v1.0.736) (2025-06-06)
 
 ## [1.0.735](https://github.com/sprucelabsai-community/jest-jira-reporter/compare/v1.0.734...v1.0.735) (2025-06-05)
