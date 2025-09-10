@@ -56,7 +56,7 @@
     "@sprucelabs/semantic-release": "^5.0.2",
     "@sprucelabs/spruce-test-fixtures": "^61.1.35",
     "@sprucelabs/test": "^10.0.20",
-    "@sprucelabs/test-utils": "^6.0.73",
+    "@sprucelabs/test-utils": "^6.0.74",
     "@types/jira-client": "^7.1.9",
     "@types/node": "^24.3.1",
     "@types/photoshop": "^25.0.4",
@@ -91,7 +91,7 @@
   },
   "dependencies": {
     "@sprucelabs/error": "^7.1.14",
-    "@sprucelabs/schema": "^32.1.36",
+    "@sprucelabs/schema": "^32.1.38",
     "@sprucelabs/spruce-core-schemas": "^39.0.294",
     "@sprucelabs/spruce-skill-utils": "^30.4.29",
     "jira-client": "^8.2.2"
