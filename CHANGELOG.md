@@ -1,3 +1,7 @@
+## 3.0.0 (2025-11-09)
+
+* major: upgrade ([bbd07f7](https://github.com/sprucelabsai-community/jest-jira-reporter/commit/bbd07f7))
+
 ## <small>2.0.136 (2025-11-08)</small>
 
 * chore(auto-upgrade): Upgrade Tests Passed [auto-merge] ([0a3ceff](https://github.com/sprucelabsai-community/jest-jira-reporter/commit/0a3ceff))
