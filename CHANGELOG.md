@@ -1,3 +1,8 @@
+## <small>3.0.18 (2025-12-01)</small>
+
+* chore(auto-upgrade): Upgrade Tests Passed [auto-merge] ([817f380](https://github.com/sprucelabsai-community/jest-jira-reporter/commit/817f380))
+* chore(auto-upgrade): upgraded packages [upgrade-all] ([2e87bd8](https://github.com/sprucelabsai-community/jest-jira-reporter/commit/2e87bd8))
+
 ## <small>3.0.17 (2025-11-29)</small>
 
 * chore(auto-upgrade): Upgrade Tests Passed [auto-merge] ([0d3f17a](https://github.com/sprucelabsai-community/jest-jira-reporter/commit/0d3f17a))
