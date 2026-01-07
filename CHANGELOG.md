@@ -1,3 +1,8 @@
+## <small>3.1.1 (2026-01-07)</small>
+
+* chore(auto-upgrade): Upgrade Tests Passed [auto-merge] ([cd1be7e](https://github.com/sprucelabsai-community/jest-jira-reporter/commit/cd1be7e))
+* chore(auto-upgrade): upgraded packages [upgrade-all] ([64a20c3](https://github.com/sprucelabsai-community/jest-jira-reporter/commit/64a20c3))
+
 ## 3.1.0 (2026-01-07)
 
 * feat: add exports field for proper ESM support in Node.js ([43a417b](https://github.com/sprucelabsai-community/jest-jira-reporter/commit/43a417b))
