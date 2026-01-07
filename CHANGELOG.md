@@ -1,3 +1,7 @@
+## <small>3.1.2 (2026-01-07)</small>
+
+* patch: upgrade dependencies ([8ffee17](https://github.com/sprucelabsai-community/jest-jira-reporter/commit/8ffee17))
+
 ## <small>3.1.1 (2026-01-07)</small>
 
 * chore(auto-upgrade): Upgrade Tests Passed [auto-merge] ([cd1be7e](https://github.com/sprucelabsai-community/jest-jira-reporter/commit/cd1be7e))
