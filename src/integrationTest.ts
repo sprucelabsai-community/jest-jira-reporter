@@ -1,4 +1,4 @@
-require('dotenv').config()
+require('dotenv').config({ quiet: true })
 import JestReporter from './JestReporter'
 
 const reporter = new JestReporter({
