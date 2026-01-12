@@ -1,3 +1,7 @@
+## <small>3.1.4 (2026-01-12)</small>
+
+* Enable dotenv quiet mode to suppress missing .env warnings ([b853c84](https://github.com/sprucelabsai-community/jest-jira-reporter/commit/b853c84))
+
 ## <small>3.1.3 (2026-01-08)</small>
 
 * chore(auto-upgrade): Upgrade Tests Passed [auto-merge] ([5d49a01](https://github.com/sprucelabsai-community/jest-jira-reporter/commit/5d49a01))
