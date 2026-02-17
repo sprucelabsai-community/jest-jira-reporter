@@ -1,3 +1,8 @@
+## <small>3.1.7 (2026-02-17)</small>
+
+* patch: add skipLibCheck to tsconfig.dist.json ([33415f6](https://github.com/sprucelabsai-community/jest-jira-reporter/commit/33415f6))
+* patch: upgrade dependencies ([96ea03f](https://github.com/sprucelabsai-community/jest-jira-reporter/commit/96ea03f))
+
 ## <small>3.1.6 (2026-01-27)</small>
 
 * chore(auto-upgrade): Upgrade Tests Passed [auto-merge] ([3765fdd](https://github.com/sprucelabsai-community/jest-jira-reporter/commit/3765fdd))
