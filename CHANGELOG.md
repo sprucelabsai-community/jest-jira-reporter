@@ -1,3 +1,7 @@
+## <small>3.1.21 (2026-04-07)</small>
+
+* Upgrade dependencies and fix TypeScript 6.0 tsconfig deprecations ([64fa9b6](https://github.com/sprucelabsai-community/jest-jira-reporter/commit/64fa9b6))
+
 ## <small>3.1.20 (2026-03-13)</small>
 
 * chore(auto-upgrade): Upgrade Tests Passed [auto-merge] ([e4c98e3](https://github.com/sprucelabsai-community/jest-jira-reporter/commit/e4c98e3))
